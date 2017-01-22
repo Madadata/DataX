@@ -36,58 +36,49 @@ S3Writer实现了从DataX协议转为S3TXT文件功能，S3文件本身是无结
 
 ```json
 {
-    "setting": {},
-    "job": {
-        "setting": {
-            "speed": {
-                "channel": 2
-            }
-        },
-        "content": [
-            {
-                "reader": {
-                    "name": "txtfilereader",
-                    "parameter": {
-                        "path": ["/home/haiwei.luo/case00/data"],
-                        "encoding": "UTF-8",
-                        "column": [
-                            {
-                                "index": 0,
-                                "type": "long"
-                            },
-                            {
-                                "index": 1,
-                                "type": "boolean"
-                            },
-                            {
-                                "index": 2,
-                                "type": "double"
-                            },
-                            {
-                                "index": 3,
-                                "type": "string"
-                            },
-                            {
-                                "index": 4,
-                                "type": "date",
-                                "format": "yyyy.MM.dd"
-                            }
-                        ],
-                        "fieldDelimiter": ","
-                    }
-                },
-                "writer": {
-                    "name": "txtfilewriter",
-                    "parameter": {
-                        "path": "/home/haiwei.luo/case00/result",
-                        "fileName": "luohw",
-                        "writeMode": "truncate",
-                        "dateFormat": "yyyy-MM-dd"
-                    }
-                }
-            }
-        ]
-    }
+  {
+      "job": {
+          "content": [
+              {
+                  "reader": {
+                      "name": "mysqlreader",
+                      "parameter": {
+                          "column": ["*"],
+                          "connection": [
+                              {
+                                  "jdbcUrl": ["jdbc:mysql://xxx:3306/xxx"],
+                                  "table": ["yyy"]
+                              }
+                          ],
+                          "password": "root",
+                          "username": "root",
+                          "where": ""
+                      }
+                  },
+                  "writer": {
+                      "name": "s3writer",
+                      "parameter": {
+                          "s3Bucket": "xxx",
+                          "s3AccessKey": "xxx",
+                          "s3SecretKey": "xxx+",
+                          "s3Endpoint": "s3.cn-north-1.amazonaws.com.cn",
+
+                          "dateFormat": "",
+                          "fieldDelimiter": ",",
+                          "fileName": "yyy",
+                          "path": "xxx/xxx",
+                          "writeMode": "truncate"
+                      }
+                  }
+              }
+          ],
+          "setting": {
+              "speed": {
+                  "channel": 10
+              }
+          }
+      }
+  }
 }
 ```
 
