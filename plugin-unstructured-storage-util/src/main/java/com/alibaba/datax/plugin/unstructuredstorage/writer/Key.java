@@ -35,4 +35,13 @@ public class Key {
     
     // writer file type suffix, like .txt  .csv
     public static final String SUFFIX = "suffix";
+
+    public static final String S3_BUCKET = "s3Bucket";
+
+    public static final String S3_ACCESS_KEY = "s3AccessKey";
+
+    public static final String S3_SECRET_KEY = "s3SecretKey";
+
+    public static final String S3_ENDPOINT = "s3Endpoint";
+
 }
